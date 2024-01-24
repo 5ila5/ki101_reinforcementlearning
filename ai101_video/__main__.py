@@ -38,7 +38,7 @@ class MainScene(DefaultMainVoiceScene):
 
 
 argparser = argparse.ArgumentParser()
-argparser.add_argument("--quality", default="low_quality")
+argparser.add_argument("--quality", default="low_quality", choices=['fourk_quality', 'production_quality', 'high_quality', 'medium_quality', 'low_quality', 'example_quality'])
 args = argparser.parse_args()
 
 config.quality = args.quality
