@@ -161,6 +161,6 @@ cython_debug/
 .idea/
 media/images/
 media/videos/
+media/texts/
 # remove later
-media/voiceovers/ 
-
+media/voiceovers/
