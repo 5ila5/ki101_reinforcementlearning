@@ -5,7 +5,7 @@ from manim_voiceover.services.gtts import GTTSService
 class DefaultVoiceScene(VoiceoverScene):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.set_speech_service(GTTSService())
+        self.set_speech_service(GTTSService(lang="de", tld="de"))
 
 
 class DefaultMainVoiceScene(DefaultVoiceScene):
