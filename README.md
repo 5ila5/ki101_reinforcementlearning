@@ -2,10 +2,13 @@
 
 ## Installation
 
-install [python](https://www.python.org/downloads/) and [pre-commit](https://pre-commit.com/)
+install [python](https://www.python.org/downloads/) and [pre-commit](https://pre-commit.com/) (develomet only)
 
 ```bash
 pip install -r requirements.txt
+
+# For Development also run
+
 pre-commit install
 ```
 
