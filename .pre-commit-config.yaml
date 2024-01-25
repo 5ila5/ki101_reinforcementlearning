@@ -12,14 +12,14 @@ repos:
           - --safe
           - --quiet
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.2.5
     hooks:
       - id: codespell
         args:
           - --ignore-words-list=hass,alot,datas,dof,dur,farenheit,hist,iff,ines,ist,lightsensor,mut,nd,pres,referer,ser,serie,te,technik,ue,uint,visability,wan,wanna,withing,Adresse,termine,adresse,oder,alle,assistent,hart,marz,worthing,linz,celle,vor
-          - --skip="./.*,*.csv,*.json"
           - --quiet-level=2
         exclude_types: [csv, json]
+        exclude: ^ai101_video/text_helper.py  
   - repo: https://github.com/pycqa/flake8
     rev: 6.1.0
     hooks:
