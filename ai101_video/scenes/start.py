@@ -1,7 +1,7 @@
-from manim import *
-from ai101_video.text_helper import Text_Helper
+from manim import LEFT, RIGHT, ImageMobject, Text, Write
 
 from ai101_video.default_voice_scene import DefaultMainVoiceScene
+from ai101_video.text_helper import Text_Helper
 
 
 class Start(DefaultMainVoiceScene):
