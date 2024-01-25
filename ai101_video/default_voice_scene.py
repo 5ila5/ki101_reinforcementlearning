@@ -7,7 +7,7 @@ class DefaultVoiceScene(VoiceoverScene):
         super().__init__(*args, **kwargs)
         self.set_speech_service(GTTSService())
 
+
 class DefaultMainVoiceScene(DefaultVoiceScene):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-

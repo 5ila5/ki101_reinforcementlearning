@@ -1,9 +1,19 @@
-from manim import *
+from manim import (
+    BLUE,
+    PI,
+    PINK,
+    RIGHT,
+    Circle,
+    Create,
+    FadeOut,
+    Square,
+    Transform,
+)
 
 from ai101_video.default_voice_scene import DefaultMainVoiceScene
 
 
-class Example (DefaultMainVoiceScene):
+class Example(DefaultMainVoiceScene):
     ORDER = 1
 
     def construct(self):
@@ -17,7 +27,8 @@ class Example (DefaultMainVoiceScene):
         self.play(Transform(square, circle))  # interpolate the square into the circle
         self.play(FadeOut(square))  # fade out animation
 
-class Example2 (DefaultMainVoiceScene):
+
+class Example2(DefaultMainVoiceScene):
     ORDER = 0
 
     def construct(self):
