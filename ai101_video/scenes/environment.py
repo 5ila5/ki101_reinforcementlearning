@@ -6,94 +6,41 @@ from manim import (  # DOWN,; IN,; OUT,; RIGHT,; Create,; FadeIn,; FadeOut,; Arr
     Arrow,
     Create,
     FadeOut,
-    Group,
     GrowArrow,
-    ImageMobject,
     Tex,
     Text,
     rate_functions,
 )
 
 from ai101_video.default_voice_scene import DefaultMainVoiceScene
+from ai101_video.scenes.utils import Elfs, Grid
 from ai101_video.text_helper import Text_Helper
 
 
 class Environment(DefaultMainVoiceScene):
     def construct(self):
-        def move_elf(direction, coordinates, time=1, play=True, func=None):
-            if self.elfs[direction] != self.active_elve:
-                self.remove(self.active_elve)
-                self.active_elve = self.elfs[direction]
-                self.add(self.active_elve)
+        # elfs_group = VGroup(*self.elfs.values()).scale(6)
 
-            for e in self.elfs.values():
-                if e == self.active_elve and play:
-                    self.play(
-                        self.elfs[direction].animate.move_to(coordinates),
-                        run_time=time,
-                        rate_func=rate_functions.linear,
-                    )
-                else:
-                    e.move_to(coordinates)
+        # with self.voiceover(
+        #     Text_Helper.get_text("Praxis-Environment", "agent")
+        # ) as tracker:
 
-        env = [
-            [
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/ice.png"),
-            ],
-            [
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/cracked_hole.png"),
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/cracked_hole.png"),
-            ],
-            [
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/cracked_hole.png"),
-            ],
-            [
-                ImageMobject("assets/cracked_hole.png"),
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/ice.png"),
-                ImageMobject("assets/ice.png"),
-            ],
-        ]
-        for row in env:
-            for col in row:
-                col.scale(6)
+        #         elfs.move("down", self.get_center(), play=False)
+        #         Text("Agent", color="black")
 
-        g = Group(*[e for row in env for e in row]).arrange_in_grid(4, 4, buff=0.1)
+        grid = Grid()
 
-        stool = (
-            ImageMobject("assets/stool.png").move_to(env[0][0].get_center()).scale(6)
-        )
-        g.add(stool)
-        present = (
-            ImageMobject("assets/goal.png").move_to(env[3][3].get_center()).scale(6)
-        )
-        g.add(present)
+        grid.add_stool()
+        grid.add_present()
 
-        self.elfs = {
-            "down": ImageMobject("assets/elf_down.png"),
-            "left": ImageMobject("assets/elf_left.png"),
-            "right": ImageMobject("assets/elf_right.png"),
-            "up": ImageMobject("assets/elf_up.png"),
-        }
+        elfs = Elfs(self)
 
-        for e in self.elfs.values():
-            e.scale(6).move_to(env[0][0].get_center())
-        self.active_elve = self.elfs["down"]
-
-        g.add(stool)
+        grid.add_elfs(elfs)
 
         with self.voiceover(
             Text_Helper.get_text("Praxis-Environment", "start")
         ) as tracker:
-            self.play(g.animate, run_time=tracker.duration)
+            self.add(grid.group)
 
         with self.voiceover(
             Text_Helper.get_text("Praxis-Environment", "real_start")
@@ -101,18 +48,18 @@ class Environment(DefaultMainVoiceScene):
         ) as tracker:
             time = tracker.duration / 6
 
-            move_elf("down", env[2][0].get_center(), time * 2)
-            move_elf("right", env[2][2].get_center(), time * 2)
-            move_elf("down", env[3][2].get_center(), time)
-            move_elf("right", env[3][3].get_center(), time)
+            elfs.move("down", grid.env[2][0].get_center(), time * 2)
+            elfs.move("right", grid.env[2][2].get_center(), time * 2)
+            elfs.move("down", grid.env[3][2].get_center(), time)
+            elfs.move("right", grid.env[3][3].get_center(), time)
 
-            p1 = Text("+1", color="black").next_to(self.active_elve, UP)
+            p1 = Text("+1", color="black").next_to(elfs.active_elve, UP)
             # put text above active elf
-            self.play(Create(p1), FadeOut(present))
+            self.play(Create(p1), FadeOut(grid.present))
             self.play(FadeOut(p1))
 
-        self.add(present)
-        move_elf("down", env[0][0].get_center(), play=False)
+        self.add(grid.present)
+        elfs.move("down", grid.env[0][0].get_center(), play=False)
 
         with self.voiceover(
             Text_Helper.get_text("Praxis-Environment", "slippery1")
@@ -123,11 +70,11 @@ class Environment(DefaultMainVoiceScene):
             self.wait(n // 3 * time)
             n = n - n // 3
 
-            step = (env[1][0].get_center() - env[0][0].get_center()) / n
-            post = env[0][0].get_center()
+            step = (grid.env[1][0].get_center() - grid.env[0][0].get_center()) / n
+            post = grid.env[0][0].get_center()
             for i in range(n):
                 direction = ["right", "up", "left", "down"][i % 4]
-                move_elf(
+                elfs.move(
                     direction, post := post + step, time, func=rate_functions.linear
                 )
 
@@ -136,14 +83,14 @@ class Environment(DefaultMainVoiceScene):
         ) as tracker:
             time = tracker.duration / 6
 
-            move_elf("left", env[2][2].get_center(), time)
+            elfs.move("left", grid.env[2][2].get_center(), time)
 
             arrow_stroke_width = 10
             arrow_font_size = 80
 
             l_arrow = Arrow(
-                env[2][2].get_center(),
-                env[2][1].get_edge_center(LEFT),
+                grid.env[2][2].get_center(),
+                grid.get_edge_center(LEFT)[2][1],
                 color="green",
                 stroke_width=arrow_stroke_width,
                 max_stroke_width_to_length_ratio=100,
@@ -151,12 +98,12 @@ class Environment(DefaultMainVoiceScene):
             l_arrow_text = Tex(
                 r"$\frac{1}{3}$", color="orange", font_size=arrow_font_size
             ).next_to(
-                (env[2][2].get_center() + env[2][1].get_edge_center(LEFT)) / 2, UP
+                (grid.env[2][2].get_center() + grid.get_edge_center(LEFT)[2][1]) / 2, UP
             )
 
             u_arrow = Arrow(
-                env[2][2].get_center(),
-                env[1][2].get_edge_center(UP),
+                grid.env[2][2].get_center(),
+                grid.get_edge_center(UP)[1][2],
                 color="orange",
                 stroke_width=arrow_stroke_width,
                 max_stroke_width_to_length_ratio=100,
@@ -164,12 +111,13 @@ class Environment(DefaultMainVoiceScene):
             u_arrow_text = Tex(
                 r"$\frac{1}{3}$", color="orange", font_size=arrow_font_size
             ).next_to(
-                (env[2][2].get_center() + env[1][2].get_edge_center(UP)) / 2, RIGHT
+                (grid.env[2][2].get_center() + grid.get_edge_center(UP)[1][2]) / 2,
+                RIGHT,
             )
 
             d_arrow = Arrow(
-                env[2][2].get_center(),
-                env[3][2].get_edge_center(DOWN),
+                grid.env[2][2].get_center(),
+                grid.get_edge_center(DOWN)[3][2],
                 color="orange",
                 stroke_width=arrow_stroke_width,
                 max_stroke_width_to_length_ratio=100,
@@ -177,7 +125,8 @@ class Environment(DefaultMainVoiceScene):
             d_arrow_text = Tex(
                 r"$\frac{1}{3}$", color="orange", font_size=arrow_font_size
             ).next_to(
-                (env[2][2].get_center() + env[3][2].get_edge_center(DOWN)) / 2, LEFT
+                (grid.env[2][2].get_center() + grid.get_edge_center(DOWN)[3][2]) / 2,
+                LEFT,
             )
 
             self.play(
