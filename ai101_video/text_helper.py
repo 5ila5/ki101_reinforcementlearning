@@ -19,6 +19,7 @@ class Text_Helper:
             "end": 'Nun ist es die Aufgabe des "agents" nach diesen Gegebenheiten eine optimale "policy" zu entwerfen, das heißt zu erlernen welche "action" man je nach "state" am besten wählt. Die Besonderheit von "Reinforcement Learning" Problemen ist, dass dem "agent" weder die "Reward-Function", noch die "Transition-Function" bekannt ist. Also muss er durch die Interaktion mit seiner Umgebung lernen. Dabei befindet er sich jedem Schritt in einem neuen "state" und erhält dazu passend einen "reward". Um seinen "reward" zu maximieren, arbeitet der "agent" eine immer bessere "policy" aus.',
         },
         "Praxis-Environment": {
+            "agent": "DIESER TEXT IST NOCH NICHT FERTIG, ER WIRD NOCH BEARBEITET, BITTE NICHT VERWENDEN, DANKE! EIN BEISPIEL WIRD NOCH EINGEFÜGT!",
             "title": "Praxis: Environment",
             "start": "Jetzt ist es erstmal genug mit der Theorie. Wir wollen uns das Ganze jetzt mal an einem Beispiel anschauen.",
             "real_start": "In diesem Szenario ist ein Elf zu sehen, der versucht, das Geschenk zu erreichen. Der Elf erhält dann eine Belohnung, wenn er es geschafft hat.",

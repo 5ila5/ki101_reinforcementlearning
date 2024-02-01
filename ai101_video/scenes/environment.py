@@ -1,6 +1,7 @@
 from manim import (  # DOWN,; IN,; OUT,; RIGHT,; Create,; FadeIn,; FadeOut,; Arrow3D,; VGroup,; Wait,
     DOWN,
     LEFT,
+    OUT,
     RIGHT,
     UP,
     Arrow,
@@ -19,23 +20,46 @@ from ai101_video.text_helper import Text_Helper
 
 class Environment(DefaultMainVoiceScene):
     def construct(self):
-        # elfs_group = VGroup(*self.elfs.values()).scale(6)
-
-        # with self.voiceover(
-        #     Text_Helper.get_text("Praxis-Environment", "agent")
-        # ) as tracker:
-
-        #         elfs.move("down", self.get_center(), play=False)
-        #         Text("Agent", color="black")
-
+        elfs = Elfs(self, z_index=1)
         grid = Grid()
+
+        with self.voiceover(
+            Text_Helper.get_text("Praxis-Environment", "agent")
+        ) as tracker:
+            time = tracker.duration
+
+            elfs.scale(20)
+            elfs.to_edge(DOWN)
+            elfs.reskin("down", force=True)
+            agent_text = Text("Agent", color="orange", font_size=80).next_to(
+                elfs.active_elve, UP * 0.5
+            )
+            self.play(Create(agent_text), run_time=1)
+            time -= 1
+            time -= 2
+
+            n = 32
+
+            for i in range(n):
+                elfs.reskin(["down", "right", "up", "left"][i % 4])
+                self.wait(time / n)
+
+            elfs.reskin("down")
+
+            self.play(
+                FadeOut(agent_text),
+                elfs.active_elve.animate.scale((1 / 20) * 6).move_to(
+                    grid.env[0][0].get_center() + OUT
+                ),
+            )
+            for e in elfs.elfs.values():
+                if e is not elfs.active_elve:
+                    e.scale((1 / 20) * 6).move_to(grid.env[0][0].get_center() + OUT)
 
         grid.add_stool()
         grid.add_present()
 
-        elfs = Elfs(self)
-
-        grid.add_elfs(elfs)
+        grid.add_elfs(elfs, scale=1)
 
         with self.voiceover(
             Text_Helper.get_text("Praxis-Environment", "start")
@@ -48,10 +72,10 @@ class Environment(DefaultMainVoiceScene):
         ) as tracker:
             time = tracker.duration / 6
 
-            elfs.move("down", grid.env[2][0].get_center(), time * 2)
-            elfs.move("right", grid.env[2][2].get_center(), time * 2)
-            elfs.move("down", grid.env[3][2].get_center(), time)
-            elfs.move("right", grid.env[3][3].get_center(), time)
+            elfs.move("down", x=2, y=0, time=time * 2)
+            elfs.move("right", x=2, y=2, time=time * 2)
+            elfs.move("down", x=3, y=2, time=time)
+            elfs.move("right", x=3, y=3, time=time)
 
             p1 = Text("+1", color="black").next_to(elfs.active_elve, UP)
             # put text above active elf
@@ -59,7 +83,7 @@ class Environment(DefaultMainVoiceScene):
             self.play(FadeOut(p1))
 
         self.add(grid.present)
-        elfs.move("down", grid.env[0][0].get_center(), play=False)
+        elfs.move("down", x=0, y=0, play=False)
 
         with self.voiceover(
             Text_Helper.get_text("Praxis-Environment", "slippery1")
@@ -83,7 +107,7 @@ class Environment(DefaultMainVoiceScene):
         ) as tracker:
             time = tracker.duration / 6
 
-            elfs.move("left", grid.env[2][2].get_center(), time)
+            elfs.move("left", x=2, y=2, time=time)
 
             arrow_stroke_width = 10
             arrow_font_size = 80
