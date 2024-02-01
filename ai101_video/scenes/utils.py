@@ -15,21 +15,41 @@ class Elfs:
         self.active_elve = self.elfs["down"]
         self.grid: Grid = None
 
-    def move(
-        self,
-        direction,
-        coordinates,
-        time=1,
-        play=True,
-        func=rate_functions.ease_in_sine,
-    ):
-        if direction not in self.elfs:
-            raise Exception(f"Direction {direction} not in {self.elfs.keys()}")
+    def scale(self, scale: float):
+        for e in self.elfs.values():
+            e.scale(scale)
+        return self
 
+    def reskin(self, direction: str):
         if self.elfs[direction] != self.active_elve:
             self.scene.remove(self.active_elve)
             self.active_elve = self.elfs[direction]
             self.scene.add(self.active_elve)
+
+    def move(
+        self,
+        direction: str,
+        coordinates: Point3D = None,
+        x: float | None = None,
+        y: float | None = None,
+        time=1,
+        play=True,
+        func=rate_functions.ease_in_sine,
+    ):
+        if self.grid is None:
+            raise Exception("Grid not set")
+        if coordinates is None:
+            if x is None or y is None:
+                raise Exception("Either coordinates or x and y must be provided")
+            if x >= len(self.grid.env) or y >= len(self.grid.env[0]):
+                raise Exception(f"Coordinates ({x}, {y}) out of bounds")
+            coordinates = coordinates or self.grid.env[x][y].get_center()
+
+        direction = direction.lower()
+        if direction not in self.elfs:
+            raise Exception(f"Direction {direction} not in {self.elfs.keys()}")
+
+        self.reskin(direction)
 
         for e in self.elfs.values():
             if e == self.active_elve and play:
@@ -40,6 +60,9 @@ class Elfs:
                 )
             else:
                 e.move_to(coordinates)
+
+    def remove(self):
+        self.scene.remove(self.active_elve)
 
 
 class Grid:
@@ -100,3 +123,4 @@ class Grid:
     def add_elfs(self, elfs: Elfs):
         for e in elfs.elfs.values():
             e.scale(6).move_to(self.env[0][0].get_center())
+        elfs.grid = self
