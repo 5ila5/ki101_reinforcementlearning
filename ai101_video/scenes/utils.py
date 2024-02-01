@@ -93,6 +93,7 @@ class Grid:
                 ImageMobject("assets/ice.png"),
             ],
         ]
+        self.count = 16
         for row in self.env:
             for col in row:
                 col.scale(6)
