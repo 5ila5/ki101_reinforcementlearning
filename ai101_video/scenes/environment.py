@@ -7,6 +7,7 @@ from manim import (  # DOWN,; IN,; OUT,; RIGHT,; Create,; FadeIn,; FadeOut,; Arr
     Create,
     FadeOut,
     Group,
+    GrowArrow,
     ImageMobject,
     Tex,
     Text,
@@ -179,12 +180,11 @@ class Environment(DefaultMainVoiceScene):
                 (env[2][2].get_center() + env[3][2].get_edge_center(DOWN)) / 2, LEFT
             )
 
-            self.add(
-                # l_arrow,
-                # u_arrow,
-                # d_arrow,
-                Group(l_arrow, u_arrow, d_arrow),
-                l_arrow_text,
-                u_arrow_text,
-                d_arrow_text,
+            self.play(
+                GrowArrow(l_arrow),
+                GrowArrow(u_arrow),
+                GrowArrow(d_arrow),
+                Create(l_arrow_text),
+                Create(u_arrow_text),
+                Create(d_arrow_text),
             )
