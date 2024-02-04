@@ -2,7 +2,11 @@
 
 ## Installation
 
-install [python](https://www.python.org/downloads/) and [pre-commit](https://pre-commit.com/) (develomet only)
+install
+
+- [python](https://www.python.org/downloads/)
+- a latex distribution ([texlive](https://www.tug.org/texlive/))
+- [pre-commit](https://pre-commit.com/) (development only)
 
 ```bash
 pip install -r requirements.txt
