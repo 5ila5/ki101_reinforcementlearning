@@ -16,7 +16,8 @@ class Text_Helper:
             "elf_rewarded": "In unserem Szenario erhält der  Elf dann eine Belohnung, wenn er es geschafft hat das Geschenk zu erreichen,",
             "elf_not_rewarded": " ansonsten geht er leer aus.",
             "markov": "Zusammengenommen bezeichnet man diese Art von Problemstellung als Markov Decision Process (MDP) nach Andrej Markov.",
-            "end": 'Nun ist es die Aufgabe des "agents" nach diesen Gegebenheiten eine optimale "policy" zu entwerfen, das heißt zu erlernen welche "action" man je nach "state" am besten wählt. Die Besonderheit von "Reinforcement Learning" Problemen ist, dass dem "agent" weder die "Reward-Function", noch die "Transition-Function" bekannt ist. Also muss er durch die Interaktion mit seiner Umgebung lernen. Dabei befindet er sich jedem Schritt in einem neuen "state" und erhält dazu passend einen "reward". Um seinen "reward" zu maximieren, arbeitet der "agent" eine immer bessere "policy" aus.',
+            "policy_1": 'Nun ist es die Aufgabe des "agents" nach diesen Gegebenheiten eine optimale "policy" zu entwerfen. ',
+            "policy_2": 'Aber was ist eine Policy. Über eine Policy erlernt der "agent" welche "action" in einem "state" am besten zu wählen ist. Die Besonderheit von "Reinforcement Learning" Problemen ist, dass dem "agent" weder die "Reward-Function", noch die "Transition-Function" bekannt ist. Also muss er durch die Interaktion mit seiner Umgebung lernen. Dabei befindet er sich jedem Schritt in einem neuen "state" und erhält dazu passend einen "reward". Um seinen "reward" zu maximieren, arbeitet der "agent" eine immer bessere "policy" aus.',
         },
         "Praxis-Environment": {
             "agent": "Um euch Schritt für Schritt zu erklären wie alles funktioniert, werden wir uns an einem Beispiel orientieren. Hier unser Szenario:Alles dreht sich um den sogenannten agent. Stellt euch das so vor wie eine Spielfigur in einem Videospiel",

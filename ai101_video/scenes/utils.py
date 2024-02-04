@@ -84,6 +84,9 @@ class Elfs:
     def remove(self):
         self.scene.remove(self.active_elve)
 
+    def add_after_remove(self):
+        self.scene.add(self.active_elve)
+
     def center(self):
         for e in self.elfs.values():
             e.center()
