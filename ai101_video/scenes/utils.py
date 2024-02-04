@@ -1,9 +1,18 @@
 from manim import (
+    DOWN,
+    LEFT,
     OUT,
     RESAMPLING_ALGORITHMS,
+    RIGHT,
+    UP,
     Group,
     ImageMobject,
+    LabeledArrow,
+    MobjectTable,
+    ParsableManimColor,
+    Scene,
     Transform,
+    VGroup,
     rate_functions,
 )
 from manim.typing import Point3D, Vector3
@@ -13,6 +22,118 @@ def img(path: str) -> ImageMobject:
     i = ImageMobject(path)
     i.set_resampling_algorithm(RESAMPLING_ALGORITHMS["nearest"])
     return i
+
+
+class QTable:
+    def __init__(
+        self,
+        values: list[list[list[float | int]]],
+        arrow_scale: float = 2,
+        arrow_color: ParsableManimColor = "green",
+        lable_color: ParsableManimColor = "green",
+        frame_fill_color: ParsableManimColor = "black",
+        frame_fill_opacity: float = 1,
+    ):
+        self.values = values
+        self.arrow_scale = arrow_scale
+        self.arrow_color = arrow_color
+        self.l_color, self.r_color, self.u_color, self.d_color = (
+            arrow_color for _ in range(4)
+        )
+        self.lable_color = lable_color
+        self.frame_fill_color = frame_fill_color
+        self.frame_fill_opacity = frame_fill_opacity
+
+    def label(self, value: float):
+        return f"{value:.2f}"
+
+    def get_qtable(self) -> MobjectTable:
+        self.objects: list[list[VGroup]] = []
+        for row in self.values:
+            objects_row = []
+            for cell in row:
+                if len(cell) != 4:
+                    raise Exception("only 4 actions are supported")
+                arrows = [
+                    LabeledArrow(
+                        self.label(cell[0]),
+                        start=0.1 * RIGHT,
+                        end=LEFT * self.arrow_scale,
+                        color=self.l_color,
+                        label_frame=False,
+                        label_color=self.lable_color,
+                        frame_fill_color=self.frame_fill_color,
+                        frame_fill_opacity=self.frame_fill_opacity,
+                    ),
+                    LabeledArrow(
+                        self.label(cell[1]),
+                        start=0.1 * UP,
+                        end=DOWN * self.arrow_scale,
+                        color=self.r_color,
+                        label_frame=False,
+                        label_color=self.lable_color,
+                        frame_fill_color=self.frame_fill_color,
+                        frame_fill_opacity=self.frame_fill_opacity,
+                    ),
+                    LabeledArrow(
+                        self.label(cell[2]),
+                        start=0.1 * LEFT,
+                        end=RIGHT * self.arrow_scale,
+                        color=self.u_color,
+                        label_frame=False,
+                        label_color=self.lable_color,
+                        frame_fill_color=self.frame_fill_color,
+                        frame_fill_opacity=self.frame_fill_opacity,
+                    ),
+                    LabeledArrow(
+                        self.label(cell[3]),
+                        start=0.1 * DOWN,
+                        end=UP * self.arrow_scale,
+                        color=self.d_color,
+                        label_frame=False,
+                        label_color=self.lable_color,
+                        frame_fill_color=self.frame_fill_color,
+                        frame_fill_opacity=self.frame_fill_opacity,
+                    ),
+                ]
+                Vgroup = VGroup(*arrows)
+                objects_row.append(Vgroup)
+                # labels = [Text(f"{cell[0]:.2f}"), Text(f"{cell[1]:.2f}"), Text(f"{cell[2]:.2f}"), Text(f"{cell[3]:.2f}")]
+            self.objects.append(objects_row)
+
+        self.table = MobjectTable(
+            self.objects, v_buff=0.8, h_buff=0.8, include_outer_lines=True
+        ).scale(0.4)
+
+        self.table.z_index = 1
+        return self.table
+
+    def get_best_arrow(self, f=max, ignore=lambda b: b == 0) -> list[LabeledArrow]:
+        best_arrows = []
+        for row_idx, row in enumerate(self.values):
+            for cell_idx, cell in enumerate(row):
+                best_action = f(cell)
+                if ignore(best_action):
+                    continue
+                best_action_index = cell.index(best_action)
+                best_arrow = self.objects[row_idx][cell_idx].submobjects[
+                    best_action_index
+                ]
+                best_arrows.append(best_arrow)
+        return best_arrows
+
+    def blink_highest(self, scene: Scene, scale: float = 1, time=1, blinks=2, f=max):
+        best_arrows = self.get_best_arrow(f)
+        time_part = time / (blinks * 2)
+        for _ in range(blinks):
+            scene.play(
+                *[arrow.animate.scale(scale) for arrow in best_arrows],
+                run_time=time_part,
+            )
+            scene.play(
+                *[arrow.animate.scale(1 / scale) for arrow in best_arrows],
+                run_time=time_part,
+            )
 
 
 class Elfs:

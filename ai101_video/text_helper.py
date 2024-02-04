@@ -1,4 +1,4 @@
-ScenesToRender: list = ["Start", "Environment", "Reward"]
+ScenesToRender: list = ["Start", "Environment", "Reward", "QTable"]
 
 
 class Text_Helper:
@@ -28,6 +28,14 @@ class Text_Helper:
             "slippery1": "Dabei muss er nicht nur den richtigen Weg finden und die Löcher in der Eisdecke umgehen in dem er die richtige Abfolge von Schritten macht, sondern auch damit umgehen, dass die Eisdecke rutschig ist.",
             "slippery2": "Es kann also passieren, dass er statt in die gewählte Richtung auch in eine andere Richtung rutscht.",
             "transtiton_function": 'Diese Definition von Übergängen zwischen den States nennt man "transition function"',
+        },
+        "QTabble": {
+            "title": "Q-Tabelle",
+            "start": "Unser Elf arbeitet dafür mit einer Q-Tabelle. Die ist praktisch das Gehirn des Elfs. Jede Zeile steht hier für ein Feld in unserer Welt. "
+            "Dort wird die Bewertung von jedem Feld nach dem Lernprozess gespeichert",
+            "richtig": "und so kann der Elf je nach Wert entscheiden, welcher Zug der beste in der aktuellen Situation ist. "
+            #  'Hier wird nicht nur der direkte "reward"  eines "states" beachtet, sondern auch die "rewards", die sich zukünftig von diesem "state" aus erreichbar sind. '
+            #  'Diese werden je nach der Anzahl der benötigten "actions" um einen bestimmten Faktor abgeschwächt, damit die direkten "rewards" weiterhin eine wichtige Rolle spielen.',
         },
     }
 
