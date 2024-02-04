@@ -98,7 +98,7 @@ class Reward(DefaultMainVoiceScene):
         title = Text(Text_Helper.get_text("Reward", "title"))
         self.play(Write(title))
 
-        with self.voiceover(Text_Helper.get_text("Reward", "start")) as _:
+        with self.voiceover(Text_Helper.get_text("Reward", "start")):
             pass
 
         self.play(FadeOut(title))
@@ -112,7 +112,7 @@ class Reward(DefaultMainVoiceScene):
         crossmark = SVGMobject("assets/crossmark.svg").scale(0.6)
 
         reward_text_group = Group()
-        with self.voiceover(Text_Helper.get_text("Reward", "rewards")) as _:
+        with self.voiceover(Text_Helper.get_text("Reward", "rewards")):
             for i in range(grid.count):
                 text = "0"
                 color = BLACK
@@ -131,7 +131,7 @@ class Reward(DefaultMainVoiceScene):
             self.play(grid.group.animate, reward_text_group.animate)
         self.play(FadeOut(reward_text_group))
 
-        with self.voiceover(Text_Helper.get_text("Reward", "elf_rewarded")) as _:
+        with self.voiceover(Text_Helper.get_text("Reward", "elf_rewarded")):
             grid.add_elfs(elfs)
             elfs.move("down", grid.env[2][0].get_center())
             elfs.move("right", grid.env[2][2].get_center())
@@ -142,7 +142,7 @@ class Reward(DefaultMainVoiceScene):
 
         self.play(FadeOut(checkmark))
 
-        with self.voiceover(Text_Helper.get_text("Reward", "elf_not_rewarded")) as _:
+        with self.voiceover(Text_Helper.get_text("Reward", "elf_not_rewarded")):
             elfs.move("down", grid.env[0][0].get_center(), play=False)
 
             elfs.move("down", grid.env[1][0].get_center())
@@ -154,7 +154,7 @@ class Reward(DefaultMainVoiceScene):
         elfs.remove()
         self.play(FadeOut(grid.group))
 
-        with self.voiceover(Text_Helper.get_text("Reward", "markov")) as _:
+        with self.voiceover(Text_Helper.get_text("Reward", "markov")):
             self.wait(1)
 
             markov = ImageMobject("assets/markov.jpg").scale(0.6)
@@ -164,7 +164,7 @@ class Reward(DefaultMainVoiceScene):
 
         self.play(FadeOut(markov), FadeOut(markov_text))
 
-        with self.voiceover(Text_Helper.get_text("Reward", "policy_1")) as _:
+        with self.voiceover(Text_Helper.get_text("Reward", "policy_1")):
             self.wait(1)
 
             elf = img("assets/elf_down.png").scale(6)
@@ -196,7 +196,7 @@ class Reward(DefaultMainVoiceScene):
             *remove_question_marks(play=False)
         )
 
-        with self.voiceover(Text_Helper.get_text("Reward", "policy_2")) as _:
+        with self.voiceover(Text_Helper.get_text("Reward", "policy_2")):
             self.wait(1)
 
             policy_text = Text("Policy", font_size=40)
