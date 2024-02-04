@@ -1,4 +1,11 @@
-ScenesToRender: list = ["Start", "Environment", "Reward", "QTable", "Training"]
+ScenesToRender: list = [
+    "Start",
+    "Environment",
+    "Reward",
+    "QTable",
+    "Training",
+    "Explore_Exploite",
+]
 
 
 class Text_Helper:
@@ -42,6 +49,12 @@ class Text_Helper:
             "active_1": 'Zu Beginn des Trainings gibt es in der Q-Tabelle noch keinerlei Präferenzen für die Züge, weil er noch kein Wissen über die Umgebung und seine besten "actions" hat und verhält sich daher zunächst zufällig, da er  so möglichst viel Information über die "rewards" der jeweiligen Situation sammeln kann.',
             "active_2": 'Dieser Ansatz wird als "active learning" bezeichnet, da der "agent" aktiv Entscheidungen trifft und dann basierend auf den "rewards" lernt.',
             "passive": 'Alternativ kann man auch "passive learning" verwenden. Dabei fungiert der "agent" eher als Beobachter und verhält sich nach einer vorgegebenen "policy", um Informationen über die Umgebung zu sammeln.',
+        },
+        "Explore_Exploite": {
+            "title": "Der Exploration vs. Exploitation tradeoff",
+            "title_voice_text": "Im Training für Reinforcement Learning Agenten gibt es ein fundamentales Dilemma: Der Exploration vs. Exploitation tradeoff.",
+            "explore": "Exploration bezeichnet dabei das Erkunden der Umgebung unabhängig von der Policy, damit bessere Ansätze auch dann gefunden werden, wenn sie stark von den aktuellen Daten abweichen.",
+            "exploite": "Wendet man Exploitation an, so folgt man streng der aktuell besten policy, da das der beste aktuell bekannte Weg ist.",
         },
     }
 
