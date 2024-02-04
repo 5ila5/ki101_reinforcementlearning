@@ -175,6 +175,7 @@ class Elfs:
         time=1,
         play=True,
         func=rate_functions.ease_in_sine,
+        add_animation=[],
     ):
         if coordinates is None:
             if self.grid is None:
@@ -196,6 +197,7 @@ class Elfs:
                     self.elfs[direction].animate.move_to(
                         coordinates + (OUT * e.get_z())
                     ),
+                    *add_animation,
                     run_time=time,
                     rate_func=func,
                 )

@@ -10,6 +10,7 @@ from manim import (  # DOWN,; IN,; OUT,; RIGHT,; Create,; FadeIn,; FadeOut,; Arr
     GrowArrow,
     Tex,
     Text,
+    Uncreate,
     rate_functions,
 )
 
@@ -161,3 +162,27 @@ class Environment(DefaultMainVoiceScene):
                 Create(u_arrow_text),
                 Create(d_arrow_text),
             )
+
+        with self.voiceover(
+            Text_Helper.get_text("Praxis-Environment", "transtiton_function")
+        ) as tracker:
+            time = tracker.duration / 6
+            self.play(
+                Uncreate(l_arrow),
+                Uncreate(u_arrow),
+                Uncreate(d_arrow),
+                Uncreate(l_arrow_text),
+                Uncreate(u_arrow_text),
+                Uncreate(d_arrow_text),
+                run_time=time * 3,
+            )
+
+            # self.play(FadeOut(grid.present), FadeOut(grid.stool), run_time=time/2)
+            elfs.move(
+                "down",
+                x=0,
+                y=0,
+                add_animation=[FadeOut(grid.present), FadeOut(grid.stool)],
+                time=time * 2,
+            )
+            self.play(FadeOut(elfs.elfs["down"]), run_time=time)
