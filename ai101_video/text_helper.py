@@ -1,4 +1,5 @@
 ScenesToRender: list = [
+    # Do not remove this comment
     "Start",
     "Environment",
     "Reward",
@@ -27,7 +28,7 @@ class Text_Helper:
             "policy_2": 'Aber was ist eine Policy. Über eine Policy erlernt der "agent" welche "action" in einem "state" am besten zu wählen ist. Die Besonderheit von "Reinforcement Learning" Problemen ist, dass dem "agent" weder die "Reward-Function", noch die "Transition-Function" bekannt ist. Also muss er durch die Interaktion mit seiner Umgebung lernen. Dabei befindet er sich jedem Schritt in einem neuen "state" und erhält dazu passend einen "reward". Um seinen "reward" zu maximieren, arbeitet der "agent" eine immer bessere "policy" aus.',
         },
         "Praxis-Environment": {
-            "agent": "Um euch Schritt für Schritt zu erklären wie alles funktioniert, werden wir uns an einem Beispiel orientieren. Hier unser Szenario:Alles dreht sich um den sogenannten agent. Stellt euch das so vor wie eine Spielfigur in einem Videospiel",
+            "agent": "Um euch Schritt für Schritt zu erklären wie alles funktioniert, werden wir uns an einem Beispiel orientieren. Hier unser Szenario: Alles dreht sich um den sogenannten agent. Stellt euch das so vor wie eine Spielfigur in einem Videospiel",
             "title": "Praxis: Environment",
             "start": "In diesem Szenario folgen wir einem Elfen, der versucht, ein Geschenk zu erreichen.",
             "real_start": "Dafür muss er sich über einen zugefrorenen See bewegen, indem er sich wie auf einem Schachbrett von Feld zu Feld bewegt.",

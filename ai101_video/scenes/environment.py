@@ -8,9 +8,13 @@ from manim import (  # DOWN,; IN,; OUT,; RIGHT,; Create,; FadeIn,; FadeOut,; Arr
     Create,
     FadeOut,
     GrowArrow,
+    SurroundingRectangle,
     Tex,
     Text,
     Uncreate,
+    VGroup,
+    VMobject,
+    always_redraw,
     rate_functions,
 )
 
@@ -21,8 +25,20 @@ from ai101_video.text_helper import Text_Helper
 
 class Environment(DefaultMainVoiceScene):
     def construct(self):
+        helper_text_font_size = 30
         elfs = Elfs(self, z_index=1)
         grid = Grid()
+        grid.group.move_to(LEFT * 3)
+        texts: list[VMobject] = []
+        helper_texts = always_redraw(
+            lambda: VGroup()
+            if not texts
+            else SurroundingRectangle(
+                VGroup(*texts).arrange(DOWN, aligned_edge=RIGHT).move_to(RIGHT * 4),
+                color="green",
+            )
+        )
+        self.add(helper_texts)
 
         with self.voiceover(
             Text_Helper.get_text("Praxis-Environment", "agent")
@@ -32,7 +48,7 @@ class Environment(DefaultMainVoiceScene):
             elfs.scale(20)
             elfs.to_edge(DOWN)
             elfs.reskin("down", force=True)
-            agent_text = Text("Agent", color="orange", font_size=80).next_to(
+            agent_text = Tex("Agent", color="orange", font_size=80).next_to(
                 elfs.active_elve, UP * 0.5
             )
             self.play(Create(agent_text), run_time=1)
@@ -47,12 +63,16 @@ class Environment(DefaultMainVoiceScene):
 
             elfs.reskin("down")
 
+            t = Tex(r"Agent $\approx$ Spielfigur", font_size=helper_text_font_size)
+            texts.append(t)
             self.play(
                 FadeOut(agent_text),
+                Create(t),
                 elfs.active_elve.animate.scale((1 / 20) * 6).move_to(
                     grid.env[0][0].get_center() + OUT
                 ),
             )
+
             for e in elfs.elfs.values():
                 if e is not elfs.active_elve:
                     e.scale((1 / 20) * 6).move_to(grid.env[0][0].get_center() + OUT)
@@ -72,8 +92,25 @@ class Environment(DefaultMainVoiceScene):
             + Text_Helper.get_text("Praxis-Environment", "show_lake")
         ) as tracker:
             time = tracker.duration / 6
-
-            elfs.move("down", x=2, y=0, time=time * 2)
+            texts.extend(
+                [
+                    Tex(
+                        r"Action $\approx$ einzelner Schritt",
+                        font_size=helper_text_font_size,
+                    ),
+                    Tex(
+                        r"State $\approx$ Zustand des Szenearios",
+                        font_size=helper_text_font_size,
+                    ),
+                ]
+            )
+            elfs.move(
+                "down",
+                x=2,
+                y=0,
+                time=time * 2,
+                add_animation=[Create(texts[-2]), Create(texts[-1])],
+            )
             elfs.move("right", x=2, y=2, time=time * 2)
             elfs.move("down", x=3, y=2, time=time)
             elfs.move("right", x=3, y=3, time=time)
