@@ -1,4 +1,4 @@
-ScenesToRender: list = ["Start", "Environment", "Reward", "QTable"]
+ScenesToRender: list = ["Start", "Environment", "Reward", "QTable", "Training"]
 
 
 class Text_Helper:
@@ -36,6 +36,12 @@ class Text_Helper:
             "richtig": "und so kann der Elf je nach Wert entscheiden, welcher Zug der beste in der aktuellen Situation ist. "
             #  'Hier wird nicht nur der direkte "reward"  eines "states" beachtet, sondern auch die "rewards", die sich zukünftig von diesem "state" aus erreichbar sind. '
             #  'Diese werden je nach der Anzahl der benötigten "actions" um einen bestimmten Faktor abgeschwächt, damit die direkten "rewards" weiterhin eine wichtige Rolle spielen.',
+        },
+        "Training": {
+            "start": "Schauen wir uns jetzt einmal an, wie ein solcher Trainingsdurchlauf funktioniert:",
+            "active_1": 'Zu Beginn des Trainings gibt es in der Q-Tabelle noch keinerlei Präferenzen für die Züge, weil er noch kein Wissen über die Umgebung und seine besten "actions" hat und verhält sich daher zunächst zufällig, da er  so möglichst viel Information über die "rewards" der jeweiligen Situation sammeln kann.',
+            "active_2": 'Dieser Ansatz wird als "active learning" bezeichnet, da der "agent" aktiv Entscheidungen trifft und dann basierend auf den "rewards" lernt.',
+            "passive": 'Alternativ kann man auch "passive learning" verwenden. Dabei fungiert der "agent" eher als Beobachter und verhält sich nach einer vorgegebenen "policy", um Informationen über die Umgebung zu sammeln.',
         },
     }
 
