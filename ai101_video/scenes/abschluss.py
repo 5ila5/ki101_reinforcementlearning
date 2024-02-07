@@ -9,6 +9,7 @@ from manim import (  # DOWN,; IN,; OUT,; RIGHT,; Create,; FadeIn,; FadeOut,; Arr
     MathTex,
     Square,
     Text,
+    TexTemplate,
     Transform,
     Triangle,
     VGroup,
@@ -66,7 +67,12 @@ def get_nn_image() -> VGroup:
 
 
 def get_manim_logo() -> VGroup:
-    ds_m = MathTex(r"\mathbb{M}", fill_color=MAINM_BLACK).scale(7)
+    myTemplate = TexTemplate()
+    myTemplate.add_to_preamble(r"\usepackage{bbold}")
+
+    ds_m = MathTex(
+        r"\mathbb{M}", tex_template=myTemplate, fill_color=MAINM_BLACK
+    ).scale(7)
     ds_m.shift(2.25 * LEFT + 1.5 * UP)
     circle = Circle(color=MANIM_GREEN, fill_opacity=1).shift(LEFT)
     square = Square(color=MANIM_BLUE, fill_opacity=1).shift(UP)
