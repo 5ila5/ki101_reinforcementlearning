@@ -1,10 +1,10 @@
 ScenesToRender: list = [
     # Do not remove this comment
-    "Start",
-    "Environment",
-    "Reward",
-    "QTable",
-    "Training",
+    # "Start",
+    # "Environment",
+    # "Reward",
+    # "QTable",
+    # "Training",
     "Explore_Exploite",
 ]
 
@@ -56,6 +56,20 @@ class Text_Helper:
             "title_voice_text": "Im Training für Reinforcement Learning Agenten gibt es ein fundamentales Dilemma: Der Exploration vs. Exploitation tradeoff.",
             "explore": "Exploration bezeichnet dabei das Erkunden der Umgebung unabhängig von der Policy, damit bessere Ansätze auch dann gefunden werden, wenn sie stark von den aktuellen Daten abweichen.",
             "exploite": "Wendet man Exploitation an, so folgt man streng der aktuell besten policy, da das der beste aktuell bekannte Weg ist.",
+            "end": 'Beides ist notwendig, da Exploitation das Optimum möglicherweise verfehlt und Exploration zu ungerichtet ist, um in sinnvoller Zeit Ergebnisse zu erzielen. Hier wird dieses Problem durch die "exploration decay rate" gelöst. Diese legt die Wahrscheinlichkeit fest mit der der Agent von der aktuellen policy abweicht um Exploration anzuwenden. Diese wird mit der Zeit immer kleiner, sodass man sich immer mehr auf das Gefundene verlässt.',
+            "explore_title": "Exploration",
+            "explore_text_1": "Von der aktuellen Policy abweichen",
+            "explore_text_2": "Erkunden, um neue Wege zu finden",
+            "exploite_title": "Exploitation",
+            "exploite_text_1": "Die aktuelle Policy befolgen",
+            "exploite_text_2": "Die besten bekannten Wege nutzen",
+            "tradeoff_title": "Tradeoff",
+            "tradeoff_explore_text": "Geht in uninteressante Richtungen",
+            "tradeoff_exploite_text": "Beginnt Umwege zu gehen",
+            "decay_rate_title": "Lösung: Exploration decay rate",
+            "decay_rate_text_1": "Mit welcher Wahrscheinlichkeit",
+            "decay_rate_text_2": "der Agent exploriert",
+            "decay_rate_text_3": "Wird mit der Zeit immer kleiner",
         },
     }
 
