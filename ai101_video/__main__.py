@@ -1,9 +1,14 @@
 import argparse
 import importlib
 import inspect
+import multiprocessing
 import pkgutil
+import subprocess
+from multiprocessing import Pool
+from pathlib import PosixPath
 
 from manim import FadeOut, Scene, config
+from manim.utils.file_ops import open_file
 
 import ai101_video.scenes as main_scenes
 from ai101_video.default_voice_scene import DefaultMainVoiceScene
@@ -27,6 +32,36 @@ for loader, module_name, is_pkg in pkgutil.walk_packages(main_scenes.__path__):
 main_scene_classes.sort(key=lambda x: ScenesToRender.index(x.__name__))
 
 
+def merge_videos(video_files: list[PosixPath], output_file: PosixPath):
+    # Erstelle eine temporäre Datei mit den Namen der Videodateien
+
+    tmp_file = video_files[0].parent.joinpath("tmp.txt")
+    with open(tmp_file, "w") as f:
+        for video_file in video_files:
+            f.write(f"file '{video_file}'\n")
+
+    # Führe den ffmpeg-Befehl aus, um die Videos zusammenzuführen
+    subprocess.run(
+        [
+            "ffmpeg",
+            "-y",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            str(tmp_file),
+            "-c",
+            "copy",
+            "-scodec",
+            "copy",
+            output_file,
+        ]
+    )
+    # Lösche die temporäre Datei
+    # os.remove("temp.txt")
+
+
 def fade_out(scene: Scene):
     animations = []
     for mobject in scene.mobjects:
@@ -42,6 +77,12 @@ class MainScene(DefaultMainVoiceScene):
             fade_out(self)
 
 
+def render_scene(scene_class: type[DefaultMainVoiceScene]) -> PosixPath:
+    scene = scene_class()
+    scene.render()
+    return scene.renderer.file_writer.movie_file_path
+
+
 argparser = argparse.ArgumentParser()
 argparser.add_argument(
     "--quality",
@@ -55,7 +96,26 @@ argparser.add_argument(
         "example_quality",
     ],
 )
+argparser.add_argument(
+    "--no-multiprocessing",
+    action="store_true",
+)
+
 args = argparser.parse_args()
 
 config.quality = args.quality
-MainScene().render(preview=True)
+
+if args.no_multiprocessing:
+    MainScene().render(preview=True)
+else:
+    processes = min(multiprocessing.cpu_count(), len(main_scene_classes))
+
+    print(f"Rendering {len(main_scene_classes)} scenes with {processes} processes")
+
+    with Pool(processes=processes) as pool:
+        files = list(pool.map(render_scene, main_scene_classes))
+
+    print(files, [f.absolute() for f in files], type(files), type(files[0].absolute()))
+    output_path = files[0].with_name("MainScene.mp4")
+    merge_videos(files, output_path)
+    open_file(output_path)
