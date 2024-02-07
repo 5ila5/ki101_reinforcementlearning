@@ -1,11 +1,11 @@
 ScenesToRender: list = [
-    # Do not remove this comment
-    # "Start",
+    "Start",
     "Environment",
-    # "Reward",
-    # "QTable",
-    # "Training",
-    # "Explore_Exploite",
+    "Reward",
+    "QTable",
+    "Training",
+    "Explore_Exploite",
+    "Abschluss",
 ]
 
 
@@ -80,6 +80,12 @@ class Text_Helper:
             "decay_rate_text_1": "Mit welcher Wahrscheinlichkeit",
             "decay_rate_text_2": "der Agent exploriert",
             "decay_rate_text_3": "Wird mit der Zeit immer kleiner",
+        },
+        "End": {
+            "title": "Abschlusssatz zu Neural-Networks",
+            "NN": "Abschließend wollen wir noch erwähnen, dass es sich bei unserem Ansatz mit der Q-Tabelle natürlich nur um einzelnen Ansatz in einem großen Feld handelt. Man kann natürlich viele andere Varianten, wie beispielsweise neurale Netze, die die Neuronen-Struktur eines Gehirns nachahmen sollen, verwenden und vieles mehr. Das alles würde aber den Rahmen dieses kurzen Videos sprengen.",
+            "ending": "Wir hoffen, dass wir einen guten Einblick geben  und für die nächste Begegnung mit Reinforcement Learning ein wenig Licht ins Dunkel bringen konnten und laden dazu ein. sich bei Interesse den beigelegten Code für das gezeigte Szenario anzuschauen. Vielen Dank fürs Zuschauen!",
+            "ending_text": "Vielen Dank fürs Zuschauen!",
         },
     }
 
