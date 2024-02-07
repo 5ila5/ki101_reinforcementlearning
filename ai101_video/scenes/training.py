@@ -147,11 +147,13 @@ class Training(DefaultMainVoiceScene):
             pass
 
         with self.voiceover(Text_Helper.get_text("Training", "active_2")):
-            active_display_text_title = Text("Active Learning", font_size=20)
+            active_display_text_title = Text(
+                Text_Helper.get_text("Training", "active_text_title"), font_size=20
+            )
             active_display_text = Group(
-                Text("Agent trifft aktiv", font_size=20),
-                Text("auf den Rewards", font_size=20),
-                Text("Entscheidungen basierend", font_size=20),
+                Text(Text_Helper.get_text("Training", "active_text_1"), font_size=20),
+                Text(Text_Helper.get_text("Training", "active_text_2"), font_size=20),
+                Text(Text_Helper.get_text("Training", "active_text_3"), font_size=20),
             )
 
             active_display_text_title.move_to(RIGHT * 4 + UP * 2)
@@ -164,9 +166,11 @@ class Training(DefaultMainVoiceScene):
             self.add(active_display_text_title, active_display_text, box)
 
         with self.voiceover(Text_Helper.get_text("Training", "passive")):
-            passive_display_text_title = Text("Passive Learning", font_size=20)
+            passive_display_text_title = Text(
+                Text_Helper.get_text("Training", "passive_text_title"), font_size=20
+            )
             passive_display_text = Group(
-                Text("Agent fungiert als Beobachter", font_size=20),
+                Text(Text_Helper.get_text("Training", "passive_text"), font_size=20),
             )
 
             passive_display_text_title.move_to(RIGHT * 4 + DOWN)

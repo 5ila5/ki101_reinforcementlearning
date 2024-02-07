@@ -31,7 +31,13 @@ class Reward(DefaultMainVoiceScene):
 
         def make_question_marks(elf, color=WHITE):
             self.question_mark = [
-                Text("?", font_size=30, color=color, stroke_width=2) for _ in range(3)
+                Text(
+                    Text_Helper.get_text("Reward", "question_mark"),
+                    font_size=30,
+                    color=color,
+                    stroke_width=2,
+                )
+                for _ in range(3)
             ]
             self.add(
                 self.question_mark[0].next_to(elf, np.array([0.1, 0.1, 0])),
@@ -177,10 +183,14 @@ class Reward(DefaultMainVoiceScene):
 
             self.wait(1)
 
-            arrow_text = Text("findet", font_size=15)
+            arrow_text = Text(
+                Text_Helper.get_text("Reward", "arrow_text"), font_size=15
+            )
             arrow = Arrow(elf.get_center() + RIGHT, elf.get_center() + RIGHT * 3)
 
-            policy_test = Text("optimale policy", font_size=40)
+            policy_test = Text(
+                Text_Helper.get_text("Reward", "policy_text_1"), font_size=40
+            )
 
             self.play(
                 FadeIn(arrow),
@@ -199,7 +209,9 @@ class Reward(DefaultMainVoiceScene):
         with self.voiceover(Text_Helper.get_text("Reward", "policy_2")):
             self.wait(1)
 
-            policy_text = Text("Policy", font_size=40)
+            policy_text = Text(
+                Text_Helper.get_text("Reward", "policy_text_2"), font_size=40
+            )
 
             self.play(FadeIn(policy_text.move_to(UP * 3)))
 

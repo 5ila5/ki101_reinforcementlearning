@@ -1,10 +1,9 @@
 ScenesToRender: list = [
-    # Do not remove this comment
-    # "Start",
-    # "Environment",
-    # "Reward",
-    # "QTable",
-    # "Training",
+    "Start",
+    "Environment",
+    "Reward",
+    "QTable",
+    "Training",
     "Explore_Exploite",
 ]
 
@@ -26,6 +25,10 @@ class Text_Helper:
             "markov": "Zusammengenommen bezeichnet man diese Art von Problemstellung als Markov Decision Process (MDP) nach Andrej Markov.",
             "policy_1": 'Nun ist es die Aufgabe des "agents" nach diesen Gegebenheiten eine optimale "policy" zu entwerfen. ',
             "policy_2": 'Aber was ist eine Policy. Über eine Policy erlernt der "agent" welche "action" in einem "state" am besten zu wählen ist. Die Besonderheit von "Reinforcement Learning" Problemen ist, dass dem "agent" weder die "Reward-Function", noch die "Transition-Function" bekannt ist. Also muss er durch die Interaktion mit seiner Umgebung lernen. Dabei befindet er sich jedem Schritt in einem neuen "state" und erhält dazu passend einen "reward". Um seinen "reward" zu maximieren, arbeitet der "agent" eine immer bessere "policy" aus.',
+            "question_mark": "?",
+            "arrow_text": "findet",
+            "policy_text_1": "optimale policy",
+            "policy_text_2": "Policy",
         },
         "Praxis-Environment": {
             "agent": "Um euch Schritt für Schritt zu erklären wie alles funktioniert, werden wir uns an einem Beispiel orientieren. Hier unser Szenario: Alles dreht sich um den sogenannten agent. Stellt euch das so vor wie eine Spielfigur in einem Videospiel",
@@ -50,6 +53,12 @@ class Text_Helper:
             "active_1": 'Zu Beginn des Trainings gibt es in der Q-Tabelle noch keinerlei Präferenzen für die Züge, weil er noch kein Wissen über die Umgebung und seine besten "actions" hat und verhält sich daher zunächst zufällig, da er  so möglichst viel Information über die "rewards" der jeweiligen Situation sammeln kann.',
             "active_2": 'Dieser Ansatz wird als "active learning" bezeichnet, da der "agent" aktiv Entscheidungen trifft und dann basierend auf den "rewards" lernt.',
             "passive": 'Alternativ kann man auch "passive learning" verwenden. Dabei fungiert der "agent" eher als Beobachter und verhält sich nach einer vorgegebenen "policy", um Informationen über die Umgebung zu sammeln.',
+            "active_text_title": "Active Learning",
+            "active_text_1": "Agent trifft aktiv",
+            "active_text_2": "auf den Rewards",
+            "active_text_3": "Entscheidungen basierend",
+            "passive_text_title": "Passive Learning",
+            "passive_text": "Agent fungiert als Beobachter",
         },
         "Explore_Exploite": {
             "title": "Der Exploration vs. Exploitation tradeoff",
