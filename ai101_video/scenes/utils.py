@@ -5,6 +5,7 @@ from manim import (
     RESAMPLING_ALGORITHMS,
     RIGHT,
     UP,
+    AnimationGroup,
     Group,
     ImageMobject,
     LabeledArrow,
@@ -13,7 +14,6 @@ from manim import (
     Scene,
     Transform,
     VGroup,
-    rate_functions,
 )
 from manim.typing import Point3D, Vector3
 
@@ -174,7 +174,7 @@ class Elfs:
         y: float | None = None,
         time=1,
         play=True,
-        func=rate_functions.ease_in_sine,
+        func=None,
         add_animation=[],
     ):
         if coordinates is None:
@@ -191,15 +191,22 @@ class Elfs:
 
         self.reskin(direction)
 
+        args = {
+            "run_time": time,
+        }
+        if func is not None:
+            args["rate_func"] = func
+
         for e in self.elfs.values():
             if e == self.active_elve and play:
                 self.scene.play(
-                    self.elfs[direction].animate.move_to(
-                        coordinates + (OUT * e.get_z())
+                    AnimationGroup(
+                        self.elfs[direction]
+                        .animate.move_to(coordinates + (OUT * e.get_z()))
+                        .set_run_time(time),
+                        *add_animation,
                     ),
-                    *add_animation,
-                    run_time=time,
-                    rate_func=func,
+                    **args,
                 )
             else:
                 e.move_to(coordinates + (OUT * e.get_z()))

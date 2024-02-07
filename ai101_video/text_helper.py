@@ -1,10 +1,11 @@
 ScenesToRender: list = [
-    "Start",
+    # Do not remove this comment
+    # "Start",
     "Environment",
-    "Reward",
-    "QTable",
-    "Training",
-    "Explore_Exploite",
+    # "Reward",
+    # "QTable",
+    # "Training",
+    # "Explore_Exploite",
 ]
 
 
@@ -31,8 +32,8 @@ class Text_Helper:
             "policy_text_2": "Policy",
         },
         "Praxis-Environment": {
-            "agent": "Um euch Schritt für Schritt zu erklären wie alles funktioniert, werden wir uns an einem Beispiel orientieren. Hier unser Szenario: Alles dreht sich um den sogenannten agent. Stellt euch das so vor wie eine Spielfigur in einem Videospiel",
             "title": "Praxis: Environment",
+            "agent": "Um euch Schritt für Schritt zu erklären wie alles funktioniert, werden wir uns an einem Beispiel orientieren. Hier unser Szenario: Alles dreht sich um den sogenannten agent. Stellt euch das so vor wie eine Spielfigur in einem Videospiel",
             "start": "In diesem Szenario folgen wir einem Elfen, der versucht, ein Geschenk zu erreichen.",
             "real_start": "Dafür muss er sich über einen zugefrorenen See bewegen, indem er sich wie auf einem Schachbrett von Feld zu Feld bewegt.",
             "show_lake": "Jeder Schritt ist eine sogenannte action. Bei jeder action verändert sich der Zustand des Szenarios. Den nennt man state. Wichtig ist, dass der agent typischerweise kein Vorwissen über die Umgebung hat.",
