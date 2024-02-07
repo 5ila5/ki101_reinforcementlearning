@@ -97,7 +97,8 @@ argparser.add_argument(
     ],
 )
 argparser.add_argument(
-    "--no-multiprocessing",
+    "--multiprocessing",
+    "-m",
     action="store_true",
 )
 
@@ -105,9 +106,7 @@ args = argparser.parse_args()
 
 config.quality = args.quality
 
-if args.no_multiprocessing:
-    MainScene().render(preview=True)
-else:
+if args.multiprocessing:
     processes = min(multiprocessing.cpu_count(), len(main_scene_classes))
 
     print(f"Rendering {len(main_scene_classes)} scenes with {processes} processes")
@@ -119,3 +118,5 @@ else:
     output_path = files[0].with_name("MainScene.mp4")
     merge_videos(files, output_path)
     open_file(output_path)
+else:
+    MainScene().render(preview=True)
