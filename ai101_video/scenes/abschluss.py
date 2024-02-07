@@ -3,6 +3,7 @@ from manim import (  # DOWN,; IN,; OUT,; RIGHT,; Create,; FadeIn,; FadeOut,; Arr
     LEFT,
     RIGHT,
     UP,
+    AnimationGroup,
     Circle,
     Create,
     Line,
@@ -101,9 +102,11 @@ class Abschluss(DefaultMainVoiceScene):
             )
 
             self.play(
-                Create(text),
-                Transform(nn_image, manim_logo),
-                Write(text_made_with),
+                AnimationGroup(
+                    Create(text).set_run_time(1),
+                    Transform(nn_image, manim_logo).set_run_time(3),
+                    Write(text_made_with).set_run_time(1),
+                ),
             )
 
-            self.wait(time - 1)
+            self.wait(time - 3)
