@@ -5,6 +5,7 @@ ScenesToRender: list = [
     "QTable",
     "Training",
     "Explore_Exploite",
+    "Bewertungsfunktion",
     "Abschluss",
 ]
 
@@ -86,6 +87,16 @@ class Text_Helper:
             "NN": "Abschließend wollen wir noch erwähnen, dass es sich bei unserem Ansatz mit der Q-Tabelle natürlich nur um einzelnen Ansatz in einem großen Feld handelt. Man kann natürlich viele andere Varianten, wie beispielsweise neurale Netze, die die Neuronen-Struktur eines Gehirns nachahmen sollen, verwenden und vieles mehr. Das alles würde aber den Rahmen dieses kurzen Videos sprengen.",
             "ending": "Wir hoffen, dass wir einen guten Einblick geben  und für die nächste Begegnung mit Reinforcement Learning ein wenig Licht ins Dunkel bringen konnten und laden dazu ein. sich bei Interesse den beigelegten Code für das gezeigte Szenario anzuschauen. Vielen Dank fürs Zuschauen!",
             "ending_text": "Vielen Dank fürs Zuschauen!",
+        },
+        "Bewertungsfunktion": {
+            "start": "Um die Q-Tabelle im Training zu bearbeiten, wird eine Bewertungsfunktion eingesetzt, wir verwenden hier eine leicht abgewandelte Bellman-Optimality-Equation. Man versucht also, die Tabelle immer weiter so zu verbessern, dass sie sich der optimalen Lösung der Gleichung annähert. Dafür berechnet man je nach Belohnung für den aktuellen Zug eine Bewertung mit der man die Q-Tabelle updatet.",
+            "formel_start": "In dieser Gleichung gibt es mehrere Faktoren die man für ein optimales Training passend wählen muss:",
+            "formel_learning_rate": "Die Learning Rate steuert wie stark eine neu gelernte Information die aktuelle Bewertung beeinflusst, also wie stark sich die Werte nach einem Durchlauf ändern.",
+            "formel_reward": "Der reward ist die Bewertung der aktuellen Entscheidung. Da man aber nicht nur den aktuellen reward betrachten will, sondern auch welche rewards man als Folge der aktuellen Entscheidung in Zukunft erreichen kann, braucht man die sogenannte discount-rate, die den Einfluss von weiter in der Zukunft liegenden rewards etwas abschwächt, damit die lokal gesehen besten Entscheidungen getroffen werden.",
+            "title": "Bewertungsfunktion",
+            "bellman_title": "Bellman-Optimality-Equation",
+            "desc_text_1": "Initial oder vorheriger Wert wird angepasst",
+            "desc_text_2": "Zukünftiger möglicher Reward",
         },
     }
 
