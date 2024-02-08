@@ -131,15 +131,18 @@ class Environment(DefaultMainVoiceScene):
             n = 32
             time = tracker.duration / n
 
-            self.wait(n // 3 * time)
-            n = n - n // 3
+            self.wait((n // 3) * time)
+            n = n - (n // 3)
 
             step = (grid.env[1][0].get_center() - grid.env[0][0].get_center()) / n
             post = grid.env[0][0].get_center()
             for i in range(n):
                 direction = ["right", "up", "left", "down"][i % 4]
                 elfs.move(
-                    direction, post := post + step, time, func=rate_functions.linear
+                    direction,
+                    post := post + step,
+                    time=time,
+                    func=rate_functions.linear,
                 )
 
         with self.voiceover(
