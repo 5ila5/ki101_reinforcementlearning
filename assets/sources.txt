@@ -1,3 +1,7 @@
-car: https://t3.ftcdn.net/jpg/00/64/09/16/360_F_64091680_cQjupYpXUG6LQcqvarzQJGODWFULB89d.jpg
-schach: https://holz-leute.b-cdn.net/media/f9/f8/12/1679495300/holz-leute-schach-lernen.webp?width=3000&height=
-car: https://media.wired.com/photos/6430be5f3715dbabc0357bd9/master/w_1920,c_limit/Autonomous-Vehicles-Are-Clogging-San-Francisco-Business-1390904981.jpg
+Bellman.jpg : https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Richard_Ernest_Bellman.jpg/220px-Richard_Ernest_Bellman.jpg
+car.jpg: https://media.wired.com/photos/6430be5f3715dbabc0357bd9/master/w_1920,c_limit/Autonomous-Vehicles-Are-Clogging-San-Francisco-Business-1390904981.jpg
+checkmark.svg: https://upload.wikimedia.org/wikipedia/commons/8/8f/Checkmark.svg
+crossmark.svg: https://www.svgrepo.com/show/400140/crossmark.svg
+markov.jpg: https://upload.wikimedia.org/wikipedia/commons/7/70/AAMarkov.jpg
+schach_ki.png: Bing Image Generator/Copilot Designer https://www.bing.com/images/create
+cracked_hole.png, elf_down.png, elf_left.png, elf_right.png, elf_up.png, goal.png, ice.png, stool.png: From this icon pack https://franuka.itch.io/rpg-snow-tileset
