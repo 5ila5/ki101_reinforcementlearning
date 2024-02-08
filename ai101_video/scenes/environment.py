@@ -90,7 +90,6 @@ class Environment(DefaultMainVoiceScene):
         with self.voiceover(
             Text_Helper.get_text("Praxis-Environment", "show_lake")
         ) as tracker:
-            time = tracker.duration / 6
             texts.extend(
                 [
                     Tex(
@@ -103,15 +102,15 @@ class Environment(DefaultMainVoiceScene):
                     ),
                 ]
             )
+            self.play(Create(texts[-2]), Create(texts[-1]))
+
+            time = tracker.duration / 6
+
             elfs.move(
                 "down",
                 x=2,
                 y=0,
                 time=time * 2,
-                add_animation=[
-                    Create(texts[-2]).set_run_time(1),
-                    Create(texts[-1]).set_run_time(1),
-                ],
             )
             elfs.move("right", x=2, y=2, time=time * 2)
             elfs.move("down", x=3, y=2, time=time)

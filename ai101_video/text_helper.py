@@ -1,14 +1,14 @@
 from typing import Tuple
 
 ScenesToRender: list = [
-    "Start",
+    # "Start",
     "Environment",
-    "Reward",
-    "QTable",
-    "Training",
-    "Explore_Exploite",
-    "Bewertungsfunktion",
-    "Abschluss",
+    # "Reward",
+    # "QTable",
+    # "Training",
+    # "Explore_Exploite",
+    # "Bewertungsfunktion",
+    # "Abschluss",
 ]
 
 

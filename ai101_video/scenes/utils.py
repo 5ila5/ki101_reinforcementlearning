@@ -205,9 +205,10 @@ class Elfs:
                         .animate.move_to(coordinates + (OUT * e.get_z()))
                         .set_run_time(time),
                         *add_animation,
-                    ),
-                    **args,
+                        **args,
+                    )
                 )
+
             else:
                 e.move_to(coordinates + (OUT * e.get_z()))
 
