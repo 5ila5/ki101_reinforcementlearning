@@ -1,4 +1,12 @@
-from manim import DOWN, LEFT, RIGHT, UP, MobjectTable, SurroundingRectangle
+from manim import (
+    DOWN,
+    LEFT,
+    RIGHT,
+    UP,
+    FadeIn,
+    MobjectTable,
+    SurroundingRectangle,
+)
 from manim.mobject.graphing.coordinate_systems import GREEN
 from manim.mobject.graphing.number_line import Tex
 from manim.mobject.three_d.three_dimensions import Group
@@ -119,7 +127,7 @@ ZERO_TABLE = [
 class Training(DefaultMainVoiceScene):
     def construct(self):
         grid = Grid()
-        self.add(grid.group.scale(0.8).move_to(LEFT * 4))
+        grid_display = grid.group.scale(0.8).move_to(LEFT * 4)
 
         table = Q(ZERO_TABLE)
 
@@ -131,10 +139,10 @@ class Training(DefaultMainVoiceScene):
         table_m.scale_to_fit_height(grid.group.get_height())
         table_m.scale_to_fit_width(grid.group.get_width())
 
+        self.play(FadeIn(grid_display), FadeIn(table_m))
+
         with self.voiceover(Text_Helper.get_text("Training", "start")):
             pass
-
-        self.add(table_m)
 
         with self.voiceover(Text_Helper.get_text("Training", "active_1")):
             pass
@@ -158,7 +166,11 @@ class Training(DefaultMainVoiceScene):
                 color=GREEN
             )
 
-            self.add(active_display_text_title, active_display_text, box)
+            self.play(
+                FadeIn(active_display_text_title),
+                FadeIn(active_display_text),
+                FadeIn(box),
+            )
 
         with self.voiceover(Text_Helper.get_text("Training", "passive")):
             passive_display_text_title = Tex(
@@ -177,4 +189,8 @@ class Training(DefaultMainVoiceScene):
                 color=GREEN
             )
 
-            self.add(passive_display_text_title, passive_display_text, box)
+            self.play(
+                FadeIn(passive_display_text_title),
+                FadeIn(passive_display_text),
+                FadeIn(box),
+            )
