@@ -9,8 +9,8 @@ class Start(DefaultMainVoiceScene):
     def construct(self):
         text = Tex(Text_Helper.get_text("Start", "title"), font_size=50)
 
-        with self.voiceover(Text_Helper.get_text("Start", "title")) as tracker:
-            self.play(Write(text), run_time=tracker.duration)
+        # with self.voiceover(Text_Helper.get_text("Start", "title")) as tracker:
+        self.play(Write(text))
 
         self.wait(1)
         self.play(FadeOut(text))

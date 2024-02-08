@@ -88,8 +88,7 @@ class Environment(DefaultMainVoiceScene):
             self.add(grid.group)
 
         with self.voiceover(
-            Text_Helper.get_text("Praxis-Environment", "real_start")
-            + Text_Helper.get_text("Praxis-Environment", "show_lake")
+            Text_Helper.get_text("Praxis-Environment", "show_lake")
         ) as tracker:
             time = tracker.duration / 6
             texts.extend(
