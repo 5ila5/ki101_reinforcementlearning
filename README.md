@@ -27,4 +27,4 @@ python -m ai101_video --quality high_quality
 
 ## Jupyter Notebook
 
-There exists a [Jupyter Notebook](./reinforcement_learning.ipynb) for the scenario "Frozen Lake" used in the video. 
+There exists a [Jupyter Notebook](./reinforcement_learning.ipynb) for the scenario "Frozen Lake" used in the video.
