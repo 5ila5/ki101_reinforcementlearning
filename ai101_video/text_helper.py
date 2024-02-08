@@ -41,18 +41,18 @@ class Text_Helper:
         "Reward": {
             "title": "Reward-Function",
             "start": 'Zuletzt bleibt noch die sogenannte "Reward-Function"',
-            "rewards": 'Damit unser "agent" weiß, welchen Übergang er am besten verwenden soll, '
-            'wird jedem "state" in unserem Szenario ein positiver oder negativer "reward" zugeordnet, '
-            'also entweder eine Belohnung oder eine Bestrafung, je nachdem, ob der "state" hilfreich oder schädlich für das zu erreichende Ziel ist.',
+            "rewards": "Damit unser agent weiß, welchen Übergang er am besten verwenden soll, "
+            "wird jedem state in unserem Szenario ein positiver oder negativer reward zugeordnet, "
+            "also entweder eine Belohnung oder eine Bestrafung, je nachdem, ob der state hilfreich oder schädlich für das zu erreichende Ziel ist.",
             "elf_rewarded": "In unserem Szenario erhält der Elf dann eine Belohnung, wenn er es geschafft hat das Geschenk zu erreichen,",
             "elf_not_rewarded": " ansonsten geht er leer aus.",
             "markov": "Zusammengenommen bezeichnet man diese Art von Problemstellung als Markov Decision Process (MDP) nach Andrej Markov.",
-            "policy_1": 'Nun ist es die Aufgabe des "agents" nach diesen Gegebenheiten eine optimale "policy" zu entwerfen. ',
-            "policy_2": 'Aber was ist eine Policy? Über eine Policy erlernt der "agent" welche "action" in einem "state" am besten zu wählen ist. '
-            'Die Besonderheit von "Reinforcement Learning" Problemen ist, dass dem "agent" weder die "Reward-Function", '
-            'noch die "Transition-Function" bekannt ist. Also muss er durch die Interaktion mit seiner Umgebung lernen. '
-            'Dabei befindet er sich nach jedem Schritt in einem neuen "state" und erhält dazu passend einen "reward". '
-            'Um seinen "reward" zu maximieren, arbeitet der "agent" eine immer bessere "policy" aus.',
+            "policy_1": 'Nun ist es die Aufgabe des agents nach diesen Gegebenheiten eine optimale "policy" zu entwerfen. ',
+            "policy_2": "Aber was ist eine Policy? Über eine Policy erlernt der agent welche action in einem state am besten zu wählen ist. "
+            "Die Besonderheit von Reinforcement Learning Problemen ist, dass dem agent weder die Reward-Function, "
+            "noch die Transition-Function bekannt ist. Also muss er durch die Interaktion mit seiner Umgebung lernen. "
+            "Dabei befindet er sich nach jedem Schritt in einem neuen state und erhält dazu passend einen reward. "
+            "Um seinen reward zu maximieren, arbeitet der agent eine immer bessere policy aus.",
             "question_mark": "?",
             "arrow_text": "findet",
             "policy_text_1": "optimale policy",
@@ -67,11 +67,11 @@ class Text_Helper:
         "Training": {
             "start": "Schauen wir uns jetzt einmal an, wie ein solcher Trainingsdurchlauf funktioniert:",
             "active_1": "Zu Beginn des Trainings gibt es in der Q-Tabelle noch keinerlei Präferenzen für die Züge, "
-            'weil der "agent" noch kein Wissen über die Umgebung und seine besten "actions" hat. Er verhält sich daher zunächst zufällig, '
-            'da er so möglichst viel Informationen über die "rewards" der jeweiligen Situation sammeln kann.',
-            "active_2": 'Dieser Ansatz wird als "active learning" bezeichnet, da der "agent" aktiv Entscheidungen trifft und dann basierend auf den "rewards" lernt.',
-            "passive": 'Alternativ kann man auch "passive learning" verwenden. Dabei fungiert der "agent" eher als Beobachter '
-            'und verhält sich nach einer vorgegebenen "policy", um Informationen über die Umgebung zu sammeln.',
+            "weil der agent noch kein Wissen über die Umgebung und seine besten actions hat. Er verhält sich daher zunächst zufällig, "
+            "da er so möglichst viel Informationen über die rewards der jeweiligen Situation sammeln kann.",
+            "active_2": "Dieser Ansatz wird als active learning bezeichnet, da der agent aktiv Entscheidungen trifft und dann basierend auf den rewards lernt.",
+            "passive": "Alternativ kann man auch passive learning verwenden. Dabei fungiert der agent eher als Beobachter "
+            "und verhält sich nach einer vorgegebenen policy, um Informationen über die Umgebung zu sammeln.",
             "active_text_title": "Active Learning",
             "active_text_1": "Agent trifft aktiv",
             "active_text_2": "auf den Rewards",
@@ -86,7 +86,7 @@ class Text_Helper:
             "wenn sie stark von den aktuellen Daten abweichen.",
             "exploite": "Wendet man Exploitation an, so folgt man streng der aktuell besten policy, da das der beste aktuell bekannte Weg ist.",
             "end": "Beides ist notwendig, da Exploitation das Optimum möglicherweise verfehlt und Exploration zu ungerichtet ist, "
-            'um in sinnvoller Zeit Ergebnisse zu erzielen. Hier wird dieses Problem durch die "exploration decay rate" gelöst. '
+            "um in sinnvoller Zeit Ergebnisse zu erzielen. Hier wird dieses Problem durch die exploration decay rate gelöst. "
             "Diese legt die Wahrscheinlichkeit fest mit der der Agent von der aktuellen policy abweicht um Exploration anzuwenden. "
             "Diese wird mit der Zeit immer kleiner, sodass man sich immer mehr auf das Gefundene verlässt.",
             "explore_title": "Exploration",
