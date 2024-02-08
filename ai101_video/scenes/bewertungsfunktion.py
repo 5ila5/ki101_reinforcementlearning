@@ -138,3 +138,36 @@ class Bewertungsfunktion(DefaultMainVoiceScene):
                     )
 
         self.play(*highlight_text(formel, 77, 83, WHITE))
+
+        with self.voiceover(
+            Text_Helper.get_text("Bewertungsfunktion", "formel_discount")
+        ):
+            for i in range(0, 3):
+                if i % 2 == 0:
+                    self.play(
+                        *highlight_text(formel, 84, 97, "#21acfc"),
+                        run_time=0.5,
+                    )
+                else:
+                    self.play(
+                        *highlight_text(formel, 84, 97, WHITE),
+                        run_time=0.5,
+                    )
+
+            self.play(*highlight_text(formel, 84, 97, WHITE))
+
+            self.wait(2)
+
+            for i in range(0, 3):
+                if i % 2 == 0:
+                    self.play(
+                        *highlight_text(formel, 98, 121, "#21acfc"),
+                        run_time=0.5,
+                    )
+                else:
+                    self.play(
+                        *highlight_text(formel, 98, 121, WHITE),
+                        run_time=0.5,
+                    )
+
+        self.play(*highlight_text(formel, 98, 121, WHITE))

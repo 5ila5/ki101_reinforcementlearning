@@ -112,7 +112,8 @@ class Text_Helper:
             "formel_learning_rate": "Die Learning Rate steuert wie stark eine neu gelernte Information die aktuelle Bewertung beeinflusst, "
             "also wie stark sich die Werte nach einem Durchlauf ändern.",
             "formel_reward": "Der reward ist die Bewertung der aktuellen Entscheidung. Da man aber nicht nur den aktuellen reward betrachten will, "
-            "sondern auch welche rewards man als Folge der aktuellen Entscheidung in Zukunft erreichen kann, braucht man die sogenannte discount-rate, "
+            "sondern auch welche rewards man als Folge der aktuellen Entscheidung in Zukunft erreichen kann,",
+            "formel_discount": "braucht man die sogenannte discount-rate, "
             "die den Einfluss von weiter in der Zukunft liegenden rewards etwas abschwächt, damit die lokal gesehen besten Entscheidungen getroffen werden.",
             "title": "Bewertungsfunktion",
             "bellman_title": "Bellman-Optimality-Equation",

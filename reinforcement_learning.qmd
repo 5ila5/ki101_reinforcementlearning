@@ -13,6 +13,11 @@ execute:
 
 ## Q-Learning Reinforcement Learning (Frozen Lake)
 
+### Dependencies
+```{bash}
+pip install "gym[toy_text]" numpy
+```
+
 ```{python}
 import numpy as np
 import gym
