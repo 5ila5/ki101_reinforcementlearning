@@ -1,13 +1,6 @@
-from manim import (
-    DOWN,
-    LEFT,
-    RIGHT,
-    UP,
-    MobjectTable,
-    SurroundingRectangle,
-    Text,
-)
+from manim import DOWN, LEFT, RIGHT, UP, MobjectTable, SurroundingRectangle
 from manim.mobject.graphing.coordinate_systems import GREEN
+from manim.mobject.graphing.number_line import Tex
 from manim.mobject.three_d.three_dimensions import Group
 
 from ai101_video.default_voice_scene import DefaultMainVoiceScene
@@ -147,17 +140,19 @@ class Training(DefaultMainVoiceScene):
             pass
 
         with self.voiceover(Text_Helper.get_text("Training", "active_2")):
-            active_display_text_title = Text(
-                Text_Helper.get_text("Training", "active_text_title"), font_size=20
+            active_display_text_title = Tex(
+                Text_Helper.get_text("Training", "active_text_title"), font_size=35
             )
             active_display_text = Group(
-                Text(Text_Helper.get_text("Training", "active_text_1"), font_size=20),
-                Text(Text_Helper.get_text("Training", "active_text_2"), font_size=20),
-                Text(Text_Helper.get_text("Training", "active_text_3"), font_size=20),
+                Tex(Text_Helper.get_text("Training", "active_text_1"), font_size=25),
+                Tex(Text_Helper.get_text("Training", "active_text_2"), font_size=25),
+                Tex(Text_Helper.get_text("Training", "active_text_3"), font_size=25),
             )
 
             active_display_text_title.move_to(RIGHT * 4 + UP * 2)
-            active_display_text.arrange(DOWN, aligned_edge=LEFT).move_to(RIGHT * 4 + UP)
+            active_display_text.arrange(DOWN, aligned_edge=LEFT, buff=0.1).move_to(
+                RIGHT * 4 + UP
+            )
 
             box = SurroundingRectangle(active_display_text, buff=0.1).set_stroke(
                 color=GREEN
@@ -166,15 +161,15 @@ class Training(DefaultMainVoiceScene):
             self.add(active_display_text_title, active_display_text, box)
 
         with self.voiceover(Text_Helper.get_text("Training", "passive")):
-            passive_display_text_title = Text(
-                Text_Helper.get_text("Training", "passive_text_title"), font_size=20
+            passive_display_text_title = Tex(
+                Text_Helper.get_text("Training", "passive_text_title"), font_size=35
             )
             passive_display_text = Group(
-                Text(Text_Helper.get_text("Training", "passive_text"), font_size=20),
+                Tex(Text_Helper.get_text("Training", "passive_text"), font_size=25),
             )
 
-            passive_display_text_title.move_to(RIGHT * 4 + DOWN)
-            passive_display_text.arrange(DOWN, aligned_edge=LEFT).move_to(
+            passive_display_text_title.move_to(RIGHT * 4 + DOWN * 0.9)
+            passive_display_text.arrange(DOWN, aligned_edge=LEFT, buff=0.1).move_to(
                 RIGHT * 4 + DOWN * 1.5
             )
 

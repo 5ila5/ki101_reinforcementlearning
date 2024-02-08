@@ -18,6 +18,7 @@ from manim import (
     Text,
     Write,
 )
+from manim.mobject.text.tex_mobject import Tex
 
 from ai101_video.default_voice_scene import DefaultMainVoiceScene
 from ai101_video.scenes.utils import Elfs, Grid, img
@@ -101,7 +102,7 @@ class Reward(DefaultMainVoiceScene):
             else:
                 return arrows_remove_list
 
-        title = Text(Text_Helper.get_text("Reward", "title"))
+        title = Tex(Text_Helper.get_text("Reward", "title"), font_size=45)
         self.play(Write(title))
 
         with self.voiceover(Text_Helper.get_text("Reward", "start")):
@@ -129,7 +130,7 @@ class Reward(DefaultMainVoiceScene):
                     color = RED
 
                 reward_text_group.add(
-                    Text(text, font_size=40, color=color, stroke_width=1).move_to(
+                    Tex(text, font_size=40, color=color, stroke_width=1).move_to(
                         grid.group[i].get_center()
                     )
                 )
@@ -164,7 +165,7 @@ class Reward(DefaultMainVoiceScene):
             self.wait(1)
 
             markov = ImageMobject("assets/markov.jpg").scale(0.6)
-            markov_text = Text("Markov Decision Process (MDP)", font_size=40)
+            markov_text = Tex("Markov Decision Process (MDP)", font_size=40)
 
             self.play(FadeIn(markov_text.move_to(UP * 3)), FadeIn(markov.move_to(DOWN)))
 
@@ -183,13 +184,11 @@ class Reward(DefaultMainVoiceScene):
 
             self.wait(1)
 
-            arrow_text = Text(
-                Text_Helper.get_text("Reward", "arrow_text"), font_size=15
-            )
+            arrow_text = Tex(Text_Helper.get_text("Reward", "arrow_text"), font_size=25)
             arrow = Arrow(elf.get_center() + RIGHT, elf.get_center() + RIGHT * 3)
 
-            policy_test = Text(
-                Text_Helper.get_text("Reward", "policy_text_1"), font_size=40
+            policy_test = Tex(
+                Text_Helper.get_text("Reward", "policy_text_1"), font_size=35
             )
 
             self.play(
@@ -209,8 +208,8 @@ class Reward(DefaultMainVoiceScene):
         with self.voiceover(Text_Helper.get_text("Reward", "policy_2")):
             self.wait(1)
 
-            policy_text = Text(
-                Text_Helper.get_text("Reward", "policy_text_2"), font_size=40
+            policy_text = Tex(
+                Text_Helper.get_text("Reward", "policy_text_2"), font_size=45
             )
 
             self.play(FadeIn(policy_text.move_to(UP * 3)))

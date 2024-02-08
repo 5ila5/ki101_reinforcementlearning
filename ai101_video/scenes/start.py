@@ -1,4 +1,5 @@
-from manim import DOWN, LEFT, RIGHT, UP, FadeOut, ImageMobject, Text, Write
+from manim import DOWN, LEFT, RIGHT, UP, FadeOut, ImageMobject, Write
+from manim.mobject.graphing.number_line import Tex
 
 from ai101_video.default_voice_scene import DefaultMainVoiceScene
 from ai101_video.text_helper import Text_Helper
@@ -6,7 +7,7 @@ from ai101_video.text_helper import Text_Helper
 
 class Start(DefaultMainVoiceScene):
     def construct(self):
-        text = Text(Text_Helper.get_text("Start", "title"), font_size=50)
+        text = Tex(Text_Helper.get_text("Start", "title"), font_size=50)
 
         with self.voiceover(Text_Helper.get_text("Start", "title")) as tracker:
             self.play(Write(text), run_time=tracker.duration)

@@ -7,7 +7,6 @@ from manim import (
     ImageMobject,
     ParsableManimColor,
     SurroundingRectangle,
-    Text,
     Write,
 )
 from manim.mobject.graphing.coordinate_systems import Arrow
@@ -28,8 +27,8 @@ class Bewertungsfunktion(DefaultMainVoiceScene):
         with self.voiceover(
             Text_Helper.get_text("Bewertungsfunktion", "start")
         ) as tracker:
-            title = Text(
-                Text_Helper.get_text("Bewertungsfunktion", "title"), font_size=25
+            title = Tex(
+                Text_Helper.get_text("Bewertungsfunktion", "title"), font_size=40
             ).move_to(UP * 3)
 
             self.play(Write(title))
