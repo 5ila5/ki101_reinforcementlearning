@@ -6,6 +6,7 @@ install
 
 - [python](https://www.python.org/downloads/)
 - a latex distribution ([texlive](https://www.tug.org/texlive/))
+- [ffmpeg](https://ffmpeg.org/download.html)
 - [pre-commit](https://pre-commit.com/) (development only)
 
 ```bash
@@ -24,6 +25,10 @@ python -m ai101_video
 # or
 python -m ai101_video --quality high_quality
 ```
+
+You can see all available options with `python -m ai101_video --help`. Note that the multiprocessing option does not work as exprected and suld only be used for testing purposes.
+
+If audio is missing sometimes, try to run the script with the `--disable_caching` flag.
 
 ## Jupyter Notebook
 

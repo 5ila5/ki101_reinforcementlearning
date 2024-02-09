@@ -102,9 +102,18 @@ argparser.add_argument(
     action="store_true",
 )
 
+argparser.add_argument(
+    "--disable_caching",
+    "-dc",
+    action="store_true",
+)
+
 args = argparser.parse_args()
 
 config.quality = args.quality
+config.disable_caching = args.disable_caching
+
+print(f"{args.disable_caching=}")
 
 if args.multiprocessing:
     processes = min(multiprocessing.cpu_count(), len(main_scene_classes))
